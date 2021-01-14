@@ -44,9 +44,12 @@ const DeleteModal: React.FC<{}> = () => {
               Delete account {studentNumber}?
             </h3>
             <div className="mt-2">
-              <p className="text-sm leading-5 text-gray-500">
+              <p className="text-sm leading-5 text-gray-500 mb-2">
                 Are you sure you want to delete this account? All the data will be permanently
                 removed. This action cannot be undone.
+              </p>
+              <p className="text-sm leading-5 text-red-500">
+                This includes votes and registrations done by this student.
               </p>
             </div>
           </div>
