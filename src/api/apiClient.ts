@@ -6,7 +6,7 @@ const apiClient = axios.create({
 })
 
 // test
-const tempToken = '1|UZLIiNBtLRbxVXUhAXTvy7RmLakNMcP6xCutycYy'
+const tempToken = '1|QH2jzwRHrX2XIMykHH9RB70F4GbR3sMn0WmkYvyA'
 
 const authToken = localStorage.getItem('auth-token') || tempToken
 
