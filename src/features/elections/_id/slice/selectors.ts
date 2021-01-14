@@ -7,6 +7,7 @@ export const selectElection = (state: RootState) => state.election.electionPage.
 
 export const selectElectionIsEnded = createSelector(selectElection, (election) => {
   if (!election) return false
+  if (election.started_at) return false
   if (election.completed_at || election.cancelled_at) return true
   return false
 })
