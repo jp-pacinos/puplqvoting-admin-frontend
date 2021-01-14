@@ -1,0 +1,8 @@
+export { default as AddStudent } from './AddStudent'
+export { default as DeleteModal } from './DeleteModal'
+export { default as EditModal } from './EditModal'
+export { default as Filters } from './Filters'
+export { default as GroupActionButtons } from './GroupActionButtons'
+export { default as GroupEditModal } from './GroupEditModal'
+export { default as GroupDeleteModal } from './GroupDeleteModal'
+export { default as StudentsTable } from './StudentsTable'

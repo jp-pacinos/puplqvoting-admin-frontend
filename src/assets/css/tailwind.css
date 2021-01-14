@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* purgecss start ignore */
+@tailwind base;
+
+@tailwind components;
+/* purgecss end ignore */
+
+@tailwind utilities;
+
+/* 
+  ---------------------------------- 
+    custom components 
+  ---------------------------------- */
+
+/* btn */
+@layer components {
+  .btn {
+    @apply text-gray-700 font-medium py-1 px-4 rounded transition-colors duration-75 ease-in-out;
+  }
+
+  .btn:focus {
+    @apply outline-none;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn:disabled {
+    @apply opacity-50;
+  }
+
+  .btn-sm {
+    @apply text-sm py-1 px-3;
+  }
+
+  .btn-lg {
+    @apply py-2 px-4;
+  }
+
+  /* gray */
+  .btn-gray {
+    @apply bg-gray-200 text-gray-700;
+  }
+
+  .btn-gray:hover {
+    @apply bg-gray-300;
+  }
+
+  /* white */
+  .btn-white {
+    @apply bg-white text-gray-700;
+  }
+
+  .btn-white:hover {
+    @apply text-gray-700;
+  }
+
+  /* blue */
+  .btn-blue {
+    @apply text-white bg-blue-500;
+  }
+
+  .btn-blue:hover {
+    @apply bg-blue-400;
+  }
+
+  .btn-blue-link {
+    @apply text-blue-500;
+  }
+
+  .btn-blue-link:hover {
+    @apply text-blue-600;
+  }
+
+  .btn-blue-link:focus {
+    @apply outline-none;
+  }
+
+  /* green */
+  .btn-green {
+    @apply text-white bg-green-500;
+  }
+
+  .btn-green:hover {
+    @apply bg-green-400;
+  }
+
+  .btn-green-link {
+    @apply text-green-500;
+  }
+
+  .btn-green-link:hover {
+    @apply text-green-600;
+  }
+
+  .btn-green-link:focus {
+    @apply outline-none;
+  }
+
+  /* red */
+  .btn-red {
+    @apply text-white bg-red-500;
+  }
+
+  .btn-red:hover {
+    @apply bg-red-400;
+  }
+
+  .btn-red-link {
+    @apply text-red-500;
+  }
+
+  .btn-red-link:hover {
+    @apply text-red-600;
+  }
+
+  .btn-red-link:focus {
+    @apply outline-none;
+  }
+}
+
+/* input */
+@layer components {
+  .input {
+    @apply w-full appearance-none;
+    @apply border-2 border-gray-200 bg-white rounded;
+    @apply font-normal text-gray-700;
+    @apply py-2 px-4;
+  }
+
+  .input:focus {
+    @apply outline-none border-yellow-300;
+    @apply bg-white;
+  }
+}
+
+/* select */
+@layer components {
+  .select {
+    @apply relative;
+  }
+
+  .select__input {
+    @apply input;
+    @apply pr-8; /* icon */
+  }
+
+  .select__icon {
+    @apply pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-600;
+  }
+}
+
+/* checkbox */
+@layer components {
+  .form-checkbox {
+    @apply appearance-none inline-block align-middle select-none;
+    @apply h-5 w-5;
+    @apply border border-gray-400 rounded bg-white;
+  }
+
+  .form-checkbox:focus {
+    /* @apply outline-none shadow-outline; */
+    @apply outline-none ring;
+  }
+
+  .form-checkbox:checked {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    border-color: transparent;
+    background-color: currentColor;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+/* card */
+@layer components {
+  .card {
+    @apply w-full bg-white p-4 border rounded mb-3;
+  }
+}
+
+/* paragraph */
+@layer components {
+  .paragraph {
+    font-family: 'Open Sans', 'Segoe UI', 'sans-serif';
+    @apply text-gray-500 text-base inline mb-2;
+    @apply mr-2; /* for Show more/ Show less button margin */
+  }
+}
+
+/* search */
+@layer components {
+  .search {
+    @apply relative w-full;
+  }
+
+  .search__input {
+    @apply pl-10;
+  }
+
+  .search__icon {
+    @apply pointer-events-none absolute inset-y-0 left-0 pl-4 flex items-center;
+  }
+}
+
+/* icon-button */
+@layer components {
+  .icon-button {
+    @apply rounded-full text-lg p-2;
+    @apply transition-colors ease-in-out duration-100;
+  }
+
+  .icon-button:focus {
+    @apply outline-none;
+  }
+
+  .icon-button:active {
+    transform: scale(0.98);
+  }
+}
+
+/* custom-table */
+@layer components {
+  .table {
+    @apply table-fixed w-full;
+  }
+
+  .table th,
+  .table td {
+    @apply px-4 py-2;
+  }
+
+  .table-sm th,
+  .table-sm td {
+    @apply px-2 py-1;
+  }
+
+  .table-lg td {
+    @apply px-4 py-3;
+  }
+
+  .bordered th,
+  .bordered td {
+    @apply border;
+  }
+
+  .stripped tbody tr:nth-of-type(even) {
+    @apply bg-gray-50;
+  }
+}
+
+/* floatbox like snackbar */
+@layer components {
+  .floatbox {
+    min-width: 250px;
+    @apply fixed bg-transparent z-10;
+  }
+
+  .floatbox__middle__x {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .floatbox__middle__y {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+
+  .floatbox__middle {
+    left: 50%;
+    right: auto;
+    top: 50%;
+    bottom: auto;
+    transform: translate(-50%);
+  }
+}
+
+/* student table */
+@layer components {
+  .student-table tr {
+    @apply text-center;
+  }
+  .student-table th {
+    top: 10%;
+    @apply text-center sticky text-blue-500 bg-gray-100 font-normal;
+  }
+  /* fullname */
+  .student-table td:nth-child(3) {
+    @apply text-left;
+  }
+  /* course-year */
+  .student-table td:nth-child(5) {
+    @apply text-left;
+  }
+}
+
+/* party - officials table */
+@layer components {
+  .officials-table th {
+    @apply font-semibold text-left text-blue-500 py-2;
+  }
+
+  /* remove button */
+  .officials-table td:nth-child(1) {
+    @apply text-center;
+  }
+
+  /* picture button */
+  .officials-table td:nth-child(4) {
+    @apply text-center;
+  }
+
+  /*
+    add officials table
+  */
+  .officials-table-search th {
+    @apply font-semibold text-left text-blue-500 py-1;
+  }
+
+  /* add button */
+  .officials-table-search td:nth-child(1) {
+    @apply text-center;
+  }
+}
+
+/* election - comparisons table */
+@layer components {
+  .election-comparisons-table th {
+    @apply py-3;
+    @apply font-semibold text-sm text-left text-blue-500 bg-gray-100;
+  }
+
+  /* votes column */
+  .election-comparisons-table tr td:nth-child(3) {
+    @apply font-medium text-right;
+  }
+}

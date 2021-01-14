@@ -1,0 +1,44 @@
+{
+  "current_page": 1,
+  "data": [
+    {
+      "id": 4,
+      "name": "Party 4863",
+      "description": "Velit in doloribus dolorem quam. Ad dolorem necessitatibus consectetur beatae cum consectetur. Et ut blanditiis nulla est ipsa aliquid error. Repellat voluptatem earum ut ducimus porro iusto.",
+      "session_id": 2,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 3,
+      "name": "Party 3102",
+      "description": "Velit a sed sequi dolor eos necessitatibus. Reprehenderit eveniet provident numquam. Autem qui est enim dicta et ullam. Doloremque atque velit eaque aliquam ratione voluptas.",
+      "session_id": 2,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 1,
+      "name": "Party 1982",
+      "description": "Soluta et mollitia placeat dolor. Aut aperiam nam quo cum. Harum occaecati molestiae reprehenderit consequatur id itaque aut.",
+      "session_id": 1,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 2,
+      "name": "Party 1010",
+      "description": "Ullam possimus voluptate sint eum alias voluptatem porro culpa. Id vitae non beatae quia itaque accusamus repellat. Neque harum dolore vel iste eum in excepturi voluptas.",
+      "session_id": 1,
+      "created_at": null,
+      "updated_at": null
+    }
+  ],
+  "first_page_url": "http://localhost:8000/parties?page=1",
+  "from": 1,
+  "next_page_url": null,
+  "path": "http://localhost:8000/parties",
+  "per_page": 100,
+  "prev_page_url": null,
+  "to": 4
+}
