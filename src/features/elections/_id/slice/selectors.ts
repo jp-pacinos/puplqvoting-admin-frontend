@@ -5,6 +5,12 @@ import { officialsAdapter } from './adapters'
 
 export const selectElection = (state: RootState) => state.election.electionPage.election
 
+export const selectElectionIsEnded = createSelector(selectElection, (election) => {
+  if (!election) return false
+  if (election.completed_at || election.cancelled_at) return true
+  return false
+})
+
 export const selectElectionResultsLink = (state: RootState) =>
   state.election.electionPage.reports.election
 
