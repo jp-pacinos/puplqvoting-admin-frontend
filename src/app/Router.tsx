@@ -6,7 +6,12 @@ import { RouteWithLayout } from 'common/components'
 import { Main as MainLayout } from 'app/layouts'
 
 // pages
-import { ElectionsPage, ElectionPage, ElectionSettingsPage } from 'features/elections'
+import {
+  ElectionsPage,
+  ElectionPage,
+  ElectionSettingsPage,
+  ElectionKeysPage,
+} from 'features/elections'
 import { PartiesPage, PartiesPage_Id } from 'features/parties'
 import { StudentsPage } from 'features/students'
 import { NotFoundPage } from 'features/404'
@@ -22,6 +27,12 @@ const Router: React.FC<{}> = () => {
         path="/elections/:id/settings"
         layout={MainLayout}
         component={ElectionSettingsPage}
+        exact
+      />
+      <RouteWithLayout
+        path="/elections/:id/keys"
+        layout={MainLayout}
+        component={ElectionKeysPage}
         exact
       />
 
