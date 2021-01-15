@@ -125,22 +125,22 @@ const Filters: React.FC<Props> = () => {
         <Title>Filter Students</Title>
         <FormContainer>
           <FormField>
-            <SelectCourses
-              id="course"
-              className="bg-gray-100"
-              placeholder="All courses"
-              value={course}
-              onChange={(e) => setCourse(e.target.value)}
-            />
-          </FormField>
-
-          <FormField>
             <SelectGender
               id="gender"
               className="bg-gray-100"
               placeholder="All gender"
               value={gender}
               onChange={(e) => setGender(e.target.value)}
+            />
+          </FormField>
+
+          <FormField>
+            <SelectCourses
+              id="course"
+              className="bg-gray-100"
+              placeholder="All courses"
+              value={course}
+              onChange={(e) => setCourse(e.target.value)}
             />
           </FormField>
         </FormContainer>
