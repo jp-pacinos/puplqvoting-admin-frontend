@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { AiOutlineDashboard } from 'react-icons/ai'
+import { AiOutlineDashboard, AiOutlineSetting } from 'react-icons/ai'
+import { FiKey } from 'react-icons/fi'
 
 import { Paragraph } from 'common/components'
 import { IconButton } from 'common/components/Core'
@@ -20,6 +21,14 @@ const ElectionItem: React.FC<Props> = ({ election, ...rest }) => {
 
   const openElection = () => {
     history.push(`/elections/${election.id}`, { data: election })
+  }
+
+  const openElectionKeys = () => {
+    history.push(`/elections/${election.id}/keys`, { election })
+  }
+
+  const openElectionSettings = () => {
+    history.push(`/elections/${election.id}/settings`, { election })
   }
 
   const status = getStatus(election)
@@ -47,8 +56,18 @@ const ElectionItem: React.FC<Props> = ({ election, ...rest }) => {
       </div>
 
       <SlideRight className="flex items-center">
-        <IconButton onClick={openElection} className="btn btn-blue mr-2 md:mr-4">
+        <IconButton onClick={openElection} className="btn btn-blue mr-2">
           <AiOutlineDashboard />
+        </IconButton>
+
+        {haveRegistration && (
+          <IconButton onClick={openElectionKeys} className="btn btn-gray mr-2">
+            <FiKey />
+          </IconButton>
+        )}
+
+        <IconButton onClick={openElectionSettings} className="btn btn-gray mr-2 md:mr-4">
+          <AiOutlineSetting />
         </IconButton>
 
         {!isFinished && (
