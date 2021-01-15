@@ -60,7 +60,7 @@ const ElectionItem: React.FC<Props> = ({ election, ...rest }) => {
           <AiOutlineDashboard />
         </IconButton>
 
-        {haveRegistration && (
+        {election.verification_type === 'code' && (
           <IconButton onClick={openElectionKeys} className="btn btn-gray mr-2">
             <FiKey />
           </IconButton>
