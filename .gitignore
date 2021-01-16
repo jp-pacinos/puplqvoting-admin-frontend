@@ -25,4 +25,4 @@ yarn-error.log*
 debug.log
 
 # others
-/src/app/App.css
+src/app/App.css
