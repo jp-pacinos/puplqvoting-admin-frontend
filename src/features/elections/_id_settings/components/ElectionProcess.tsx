@@ -73,14 +73,14 @@ const ElectionProcess: React.FC<Props> = () => {
     <Container>
       <DetailsContainer title="Election Verification Process">
         <p className="text-sm text-gray-600 mb-1">
-          Update Verification Type for the vote process to be completed,{' '}
+          Update Verification type for the vote process to be completed,{' '}
           <span className="italic">email</span> only works online and{' '}
           <span className="italic">code</span> work for both online and offline,{' '}
           <span className="italic">open</span> for no validation.
         </p>
         <p className="text-sm text-gray-600">
-          It is recommended that you don't change this settings when election is started to avoid
-          unexpected change or errors.
+          Tip: Combining code and registration will allow the system to automatically give the
+          students code after they register.
         </p>
       </DetailsContainer>
       <FormContainer onSubmit={handleSubmit}>

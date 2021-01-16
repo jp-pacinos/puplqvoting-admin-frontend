@@ -69,10 +69,13 @@ const ElectionRegistration: React.FC<Props> = () => {
     <Container>
       <DetailsContainer
         title="Election with Registration"
-        details="Allow the students to register before the election. It will help to count the students that are officially participating in election."
+        details="Require the students to register before able to vote. It will help to count the students that are participating in this election."
       >
+        <p className="text-sm text-gray-600 mt-1">
+          Note: The students that are denied {'(blocked)'} will not able to register.
+        </p>
         <p className="text-sm text-gray-600">
-          Changing registration will not undo the students that are already voted.
+          Tip: Allowing registration will not undo the students that are already voted.
         </p>
       </DetailsContainer>
       <FormContainer onSubmit={handleSubmit}>
