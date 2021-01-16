@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { AiOutlineDashboard, AiOutlineSetting } from 'react-icons/ai'
+import { MdPeopleOutline } from 'react-icons/md'
 import { FiKey } from 'react-icons/fi'
 
 import { Paragraph } from 'common/components'
@@ -21,6 +22,10 @@ const ElectionItem: React.FC<Props> = ({ election, ...rest }) => {
 
   const openElection = () => {
     history.push(`/elections/${election.id}`, { data: election })
+  }
+
+  const openParties = () => {
+    history.push(`/parties?election=${election.id}`)
   }
 
   const openElectionKeys = () => {
@@ -56,17 +61,25 @@ const ElectionItem: React.FC<Props> = ({ election, ...rest }) => {
       </div>
 
       <SlideRight className="flex items-center">
-        <IconButton onClick={openElection} className="btn btn-blue mr-2">
+        <IconButton onClick={openElection} className="btn btn-blue mr-2" title="Dashboard">
           <AiOutlineDashboard />
         </IconButton>
 
+        <IconButton onClick={openParties} className="btn btn-gray mr-2" title="Parties">
+          <MdPeopleOutline />
+        </IconButton>
+
         {election.verification_type === 'code' && (
-          <IconButton onClick={openElectionKeys} className="btn btn-gray mr-2">
+          <IconButton onClick={openElectionKeys} className="btn btn-gray mr-2" title="Student Keys">
             <FiKey />
           </IconButton>
         )}
 
-        <IconButton onClick={openElectionSettings} className="btn btn-gray mr-2 md:mr-4">
+        <IconButton
+          onClick={openElectionSettings}
+          className="btn btn-gray mr-2 md:mr-4"
+          title="Settings"
+        >
           <AiOutlineSetting />
         </IconButton>
 
