@@ -37,6 +37,8 @@ const slice = createSlice({
         id: action.payload.id,
         changes: {
           active: 0,
+          started_at: null,
+          registration_at: null,
         },
       })
     },
