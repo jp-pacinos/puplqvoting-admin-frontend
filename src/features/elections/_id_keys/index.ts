@@ -1,2 +1,2 @@
-export { default as ElectionKeysPage } from './ElectionStudentKeysMain'
+export { default as ElectionKeysPage } from './KeysMain'
 export * from './slice'
