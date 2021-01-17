@@ -5,12 +5,20 @@ import get from 'lodash/get'
 
 type Params = { to: string; hasState?: boolean | string[]; fallbackTo?: string }
 interface Props {
-  (params: Params): (state?: unknown) => void
+  (params?: Params): (state?: unknown) => void
 }
 
-const usePageBack: Props = ({ to, hasState, fallbackTo = to }) => {
+const usePageBack: Props = (props) => {
   const history = useHistory()
   const location = useLocation()
+
+  if (!props) {
+    return () => {
+      history.goBack()
+    }
+  }
+
+  const { to, hasState, fallbackTo = to } = props
 
   return (state) => {
     if (isBoolean(hasState) && hasState) {
