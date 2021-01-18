@@ -153,3 +153,76 @@ export const getStudentVotes: ApiFunction.getStudentVotes = ({
 
   return apiClient.get(url, config)
 }
+
+// keys
+
+const keysURL = <T = number>(id: T) => `${baseURL}/${id}/studentKeys`
+
+export const getStudentKeys: ApiFunction.getStudentKeys = ({
+  sessionId,
+  filters = {},
+  config = {},
+}) => {
+  let url = `${keysURL(sessionId)}?page=${filters.page}&perpage=${filters.perpage}`
+
+  if (Boolean(filters.studentNumber)) url += `&studentnumber=${filters.studentNumber}`
+  if (Boolean(filters.courseId)) url += `&course=${filters.courseId}`
+  if (Boolean(filters.gender)) url += `&gender=${filters.gender}`
+  if (Boolean(filters.code)) url += `&code=${filters.code}`
+
+  return apiClient.get(url, config)
+}
+
+export const addStudentKey: ApiFunction.addStudentKey = ({ sessionId, studentId, config = {} }) => {
+  return apiClient.post(
+    `${keysURL(sessionId)}`,
+    {
+      studentid: studentId,
+    },
+    config
+  )
+}
+
+export const deleteStudentKey: ApiFunction.deleteStudentKey = ({
+  sessionId,
+  studentId,
+  config = {},
+}) => {
+  return apiClient.post(
+    `${keysURL(sessionId)}`,
+    {
+      studentid: studentId,
+      _method: 'DELETE',
+    },
+    config
+  )
+}
+
+export const addStudentKeysGroup: ApiFunction.addStudentKeysGroup = ({
+  sessionId,
+  studentIds,
+  config = {},
+}) => {
+  return apiClient.post(
+    `${keysURL(sessionId)}/group/update`,
+    {
+      studentsIds: studentIds,
+    },
+    config
+  )
+}
+
+export const deleteStudentKeysGroup: ApiFunction.deleteStudentKeysGroup = ({
+  sessionId,
+  studentIds,
+  config = {},
+}) => {
+  return apiClient.post(
+    `${keysURL(sessionId)}/group/delete`,
+    {
+      studentsIds: studentIds,
+      _method: 'DELETE',
+    },
+    config
+  )
+}

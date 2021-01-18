@@ -116,6 +116,20 @@ export declare namespace Student {
   }
 }
 
+export declare namespace StudentVoteKeys {
+  export interface ForeignFileds {
+    session_id: ForeignKey
+    student_id: ForeignKey
+  }
+
+  export interface Fields extends ForeignFileds, TimeStampFields {
+    id: PrimaryKey
+    confirmation_code: string | null
+  }
+
+  export type Fillable = Pick<Fields, 'confirmation_code' | 'session_id' | 'student_id'>
+}
+
 /**
  * officials table
  */

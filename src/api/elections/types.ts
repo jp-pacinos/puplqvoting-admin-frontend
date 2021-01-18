@@ -1,5 +1,11 @@
 import { AxiosResponse, AxiosRequestConfig } from 'axios'
-import { Session, Party, Official as ModelOfficial, Student, Timestamp } from 'api/types/Models'
+import {
+  Session,
+  Party,
+  Official as ModelOfficial,
+  Student,
+  StudentVoteKeys,
+} from 'api/types/Models'
 import { Pagination, Validation } from 'api/types/Laravel'
 
 export declare namespace ApiResponse {
@@ -22,6 +28,19 @@ export declare namespace ApiResponse {
   export type DetailedOfficial = Official & {
     student: Pick<Student.Fields, 'id' | 'lastname' | 'firstname' | 'middlename' | 'suffix'>
   }
+
+  export type StudentKeys = Pick<StudentVoteKeys.Fields, 'id' | 'confirmation_code'> &
+    Pick<
+      Student.Fields,
+      | 'student_number'
+      | 'lastname'
+      | 'firstname'
+      | 'middlename'
+      | 'suffix'
+      | 'sex'
+      | 'can_vote'
+      | 'course_id'
+    >
 
   /**
    * response
@@ -58,6 +77,10 @@ export declare namespace ApiResponse {
   }
 
   export interface getStudentVotes extends Array<OfficialWithVotes> {}
+
+  // keys
+
+  export interface getStudentKeys extends Pagination.CustomSimplePagination<StudentKeys> {}
 }
 
 export declare namespace ApiFunction {
@@ -116,6 +139,19 @@ export declare namespace ApiFunction {
   export type getStreamStatsParams = {
     sessionId: number
     options?: getStudentVotesParams['filters']
+    config?: AxiosRequestConfig
+  }
+
+  export type getStudentKeysParams = {
+    sessionId: number
+    filters?: {
+      page?: number
+      perpage?: number
+      studentNumber?: string
+      courseId?: string | number
+      gender?: string
+      code?: string | number
+    }
     config?: AxiosRequestConfig
   }
 
@@ -245,6 +281,48 @@ export declare namespace ApiFunction {
 
   export interface getStudentVotes {
     (params: getStudentVotesParams): Promise<AxiosResponse<ApiResponse.getStudentVotes>>
+  }
+
+  // keys
+
+  export interface getStudentKeys {
+    (params: getStudentKeysParams): Promise<AxiosResponse<ApiResponse.getStudentKeys>>
+  }
+
+  export interface addStudentKey {
+    (params: { sessionId: number; studentId: number; config?: AxiosRequestConfig }): Promise<
+      AxiosResponse<{
+        message: string
+        data: StudentVoteKeys.Fields
+      }>
+    >
+  }
+
+  export interface deleteStudentKey {
+    (params: { sessionId: number; studentId: number; config?: AxiosRequestConfig }): Promise<
+      AxiosResponse<{
+        message: string
+        success: boolean
+      }>
+    >
+  }
+
+  export interface addStudentKeysGroup {
+    (params: { sessionId: number; studentIds: number[]; config?: AxiosRequestConfig }): Promise<
+      AxiosResponse<{
+        message: string
+        data: StudentVoteKeys.Fields[]
+      }>
+    >
+  }
+
+  export interface deleteStudentKeysGroup {
+    (params: { sessionId: number; studentIds: number[]; config?: AxiosRequestConfig }): Promise<
+      AxiosResponse<{
+        message: string
+        affectedCount: number
+      }>
+    >
   }
 }
 
