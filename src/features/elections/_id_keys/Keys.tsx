@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 
 import {
   Filters,
@@ -7,14 +7,20 @@ import {
   KeysTableGroupActions,
   ModalGroupDeleteKey,
 } from './components'
+import { FilterProps } from './components/Filters'
 
-interface Props {}
+interface Props {
+  usePage: () => [number, Dispatch<SetStateAction<number>>]
+  usePerPage: () => [number, Dispatch<SetStateAction<number>>]
+  useSearch: () => [string, Dispatch<SetStateAction<string>>]
+  useFilters: () => [FilterProps, Dispatch<SetStateAction<FilterProps>>]
+}
 
-const Keys: React.FC<Props> = () => {
+const Keys: React.FC<Props> = ({ usePage, usePerPage, useSearch, useFilters }) => {
   return (
     <>
       <div className="my-3">
-        <Filters />
+        <Filters {...{ useSearch, useFilters }} />
       </div>
 
       <div className="card">
@@ -22,7 +28,7 @@ const Keys: React.FC<Props> = () => {
           <h4 className="text-blue-600 font-medium leading-loose">Student Keys</h4>
           <ButtonExportRecords />
         </div>
-        <KeysTable />
+        <KeysTable {...{ usePage, usePerPage }} />
       </div>
 
       {/* group actions */}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { FiX } from 'react-icons/fi'
 
 import { Search } from 'common/components'
@@ -6,9 +6,18 @@ import { Fade } from 'common/components/Transitions'
 import { IconButton, Select } from 'common/components/Core'
 import { SelectGender, SelectCourses } from 'features/app/components'
 
-interface Props {}
+export interface FilterProps {
+  course: string
+  gender: string
+  code: string
+}
 
-const Filters: React.FC<Props> = () => {
+interface Props {
+  useSearch: () => [string, Dispatch<SetStateAction<string>>]
+  useFilters: () => [FilterProps, Dispatch<SetStateAction<FilterProps>>]
+}
+
+const Filters: React.FC<Props> = ({ useSearch, useFilters }) => {
   let isDirty = true
 
   return (
