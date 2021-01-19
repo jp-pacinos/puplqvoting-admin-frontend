@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import qs from 'query-string'
 
 import { AppDispatch } from 'app/store'
-import { fetchStudentKeys } from 'features/elections/_id_keys'
+import { setElectionId, fetchStudentKeys } from './slice'
 
 import useDebounce from 'common/hooks/useDebounce'
 import { FilterProps } from './components/Filters'
@@ -86,6 +86,10 @@ const KeysWithFetcher: React.FC<Props> = () => {
     perPage,
     routeParams.id,
   ])
+
+  useEffect(() => {
+    dispatch(setElectionId(parseInt(routeParams.id)))
+  }, [dispatch, routeParams.id])
 
   return (
     <>

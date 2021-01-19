@@ -1,30 +1,51 @@
 import React from 'react'
+import { useSelector, useDispatch, batch } from 'react-redux'
 import { HiOutlineTrash } from 'react-icons/hi'
 
 import { Modal, ModalBody, ModalFooter } from 'common/components/Modal'
+import {
+  selectGroupDeleteModal,
+  selectCheckedCount,
+  selectElectionId,
+  selectStudentKeys,
+  groupDeleteModalClose,
+  groupDeleteKeys,
+} from 'features/elections/_id_keys'
 
 interface Props {}
 
 const ModalGroupDeleteKey: React.FC<Props> = () => {
-  // const { open, studentIds } = useSelector(selectGroupDeleteModal)
-  // const { students: studentsCount } = useSelector(selectCheckedCount)
-  // const dispatch = useDispatch()
+  const electionId = useSelector(selectElectionId)
+  const studentKeys = useSelector(selectStudentKeys)
+  const { open } = useSelector(selectGroupDeleteModal)
+
+  const { withCode: withCodeCount } = useSelector(selectCheckedCount)
+  const dispatch = useDispatch()
 
   const onModalClose = () => {
-    // dispatch(groupDeleteModalClose())
+    dispatch(groupDeleteModalClose())
   }
 
   const onClickDelete = () => {
-    // batch(() => {
-    //   dispatch(groupDeleteModalClose())
-    //   dispatch(groupDeleteStudents({ studentIds }))
-    // })
+    if (!studentKeys) return
+
+    let keyIds: number[] = []
+    let studentIds: number[] = []
+    for (let i = 0; i < studentKeys.length; i++) {
+      if (studentKeys[i].checked && studentKeys[i].confirmation_code !== null) {
+        keyIds.push(studentKeys[i].id)
+        studentIds.push(studentKeys[i].student_id)
+      }
+    }
+
+    batch(() => {
+      dispatch(groupDeleteModalClose())
+      dispatch(groupDeleteKeys({ sessionId: electionId as number, studentIds, keyIds }))
+    })
   }
 
-  let keyCount = 1
-
   return (
-    <Modal open={false} onClose={() => {}} name="group-delete-key-modal" position="center">
+    <Modal open={open} onClose={onModalClose} name="group-delete-key-modal" position="center">
       <ModalBody>
         <div className="sm:flex sm:items-start">
           <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
@@ -32,7 +53,7 @@ const ModalGroupDeleteKey: React.FC<Props> = () => {
           </div>
           <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
             <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
-              Delete selected key{'(s)'}?
+              Are you sure?
             </h3>
             <div className="mt-2">
               <p className="text-sm leading-5 text-gray-500">
@@ -45,7 +66,7 @@ const ModalGroupDeleteKey: React.FC<Props> = () => {
       <ModalFooter>
         <span className="flex w-full sm:ml-3 sm:w-auto">
           <button onClick={onClickDelete} type="button" className="btn btn-red w-full py-2">
-            Delete {`(${keyCount})`} selected
+            Delete {`(${withCodeCount})`} selected
           </button>
         </span>
         <span className="mt-3 flex w-full sm:mt-0 sm:w-auto">

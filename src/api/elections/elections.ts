@@ -183,6 +183,7 @@ export const addStudentKey: ApiFunction.addStudentKey = ({ sessionId, studentId,
   )
 }
 
+// ? no interface to use this api
 export const deleteStudentKey: ApiFunction.deleteStudentKey = ({
   sessionId,
   studentId,
@@ -206,7 +207,7 @@ export const addStudentKeysGroup: ApiFunction.addStudentKeysGroup = ({
   return apiClient.post(
     `${keysURL(sessionId)}/group/update`,
     {
-      studentsIds: studentIds,
+      studentIds,
     },
     config
   )
@@ -220,7 +221,7 @@ export const deleteStudentKeysGroup: ApiFunction.deleteStudentKeysGroup = ({
   return apiClient.post(
     `${keysURL(sessionId)}/group/delete`,
     {
-      studentsIds: studentIds,
+      studentIds,
       _method: 'DELETE',
     },
     config

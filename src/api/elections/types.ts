@@ -29,8 +29,9 @@ export declare namespace ApiResponse {
     student: Pick<Student.Fields, 'id' | 'lastname' | 'firstname' | 'middlename' | 'suffix'>
   }
 
-  export type StudentKeys = Pick<StudentVoteKeys.Fields, 'id' | 'confirmation_code'> &
-    Pick<
+  export type StudentKeys = Pick<StudentVoteKeys.Fields, 'id' | 'confirmation_code'> & {
+    student_id: Student.Fields['id']
+  } & Pick<
       Student.Fields,
       | 'student_number'
       | 'lastname'
@@ -81,6 +82,11 @@ export declare namespace ApiResponse {
   // keys
 
   export interface getStudentKeys extends Pagination.CustomSimplePagination<StudentKeys> {}
+
+  export interface addStudentKey {
+    message: string
+    data: StudentVoteKeys.Fields
+  }
 }
 
 export declare namespace ApiFunction {
@@ -152,6 +158,18 @@ export declare namespace ApiFunction {
       gender?: string
       code?: string | number
     }
+    config?: AxiosRequestConfig
+  }
+
+  export type actionStudentKeyParams = {
+    sessionId: number
+    studentId: number
+    config?: AxiosRequestConfig
+  }
+
+  export type groupActionStudentKeysParams = {
+    sessionId: number
+    studentIds: number[]
     config?: AxiosRequestConfig
   }
 
@@ -290,16 +308,11 @@ export declare namespace ApiFunction {
   }
 
   export interface addStudentKey {
-    (params: { sessionId: number; studentId: number; config?: AxiosRequestConfig }): Promise<
-      AxiosResponse<{
-        message: string
-        data: StudentVoteKeys.Fields
-      }>
-    >
+    (params: actionStudentKeyParams): Promise<AxiosResponse<ApiResponse.addStudentKey>>
   }
 
   export interface deleteStudentKey {
-    (params: { sessionId: number; studentId: number; config?: AxiosRequestConfig }): Promise<
+    (params: actionStudentKeyParams): Promise<
       AxiosResponse<{
         message: string
         success: boolean
@@ -308,7 +321,7 @@ export declare namespace ApiFunction {
   }
 
   export interface addStudentKeysGroup {
-    (params: { sessionId: number; studentIds: number[]; config?: AxiosRequestConfig }): Promise<
+    (params: groupActionStudentKeysParams): Promise<
       AxiosResponse<{
         message: string
         data: StudentVoteKeys.Fields[]
@@ -317,7 +330,7 @@ export declare namespace ApiFunction {
   }
 
   export interface deleteStudentKeysGroup {
-    (params: { sessionId: number; studentIds: number[]; config?: AxiosRequestConfig }): Promise<
+    (params: groupActionStudentKeysParams): Promise<
       AxiosResponse<{
         message: string
         affectedCount: number

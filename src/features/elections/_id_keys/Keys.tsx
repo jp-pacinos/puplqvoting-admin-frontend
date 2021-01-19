@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 
+import { Fade } from 'common/components/Transitions'
 import {
   Filters,
   ButtonExportRecords,
@@ -19,17 +20,17 @@ interface Props {
 const Keys: React.FC<Props> = ({ usePage, usePerPage, useSearch, useFilters }) => {
   return (
     <>
-      <div className="my-3">
+      <Fade className="my-3">
         <Filters {...{ useSearch, useFilters }} />
-      </div>
+      </Fade>
 
-      <div className="card">
+      <Fade delay={175} className="card">
         <div className="flex justify-between mb-3 items-center">
           <h4 className="text-blue-600 font-medium leading-loose">Student Keys</h4>
           <ButtonExportRecords />
         </div>
         <KeysTable {...{ usePage, usePerPage }} />
-      </div>
+      </Fade>
 
       {/* group actions */}
       <KeysTableGroupActions />

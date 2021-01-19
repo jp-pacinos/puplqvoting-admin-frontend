@@ -1,6 +1,8 @@
 import { createEntityAdapter } from '@reduxjs/toolkit'
-import { StudentKeys } from './initialState'
+import { ApiResponse } from 'api/elections/types'
 
-export const studentKeysAdapter = createEntityAdapter<StudentKeys>({
+type StudentKeysTable = ApiResponse.StudentKeys & { checked?: boolean; deleting?: boolean }
+
+export const studentKeysAdapter = createEntityAdapter<StudentKeysTable>({
   selectId: (studentKey) => studentKey.id,
 })

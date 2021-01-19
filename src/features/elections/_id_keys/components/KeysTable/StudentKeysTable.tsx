@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
-import { Checkbox } from 'common/components/Core'
+import React from 'react'
+import { TransitionGroup } from 'react-transition-group'
+import { useSelector } from 'react-redux'
 
-import { TableAllCheckbox } from './components'
+import { Fade } from 'common/components/Transitions'
+import { selectStudentKeyIds, selectFetchStatus } from 'features/elections/_id_keys'
+import { TableAllCheckbox, TableKeyRow } from './components'
 
 interface Props {}
 
@@ -26,34 +29,71 @@ const StudentKeysTable: React.FC<Props> = () => {
       </thead>
 
       <tbody>
-        <tr>
-          <td>
-            <Checkbox className="block m-auto text-blue-400" />
-          </td>
-          <td>2015-99732-LQ-0</td>
-          <td>Abbott, Wilhelmine DDS</td>
-          <td>F</td>
-          <td>DIPG</td>
-          <td>wq4ccAx</td>
-        </tr>
-        <tr>
-          <td>
-            <Checkbox className="block m-auto text-blue-400" />
-          </td>
-          <td>2015-99732-LQ-0</td>
-
-          <td>Abbott, Wilhelmine DDS</td>
-          <td>F</td>
-          <td>DIPG</td>
-          <td>
-            <button className="btn btn-gray btn-sm hover:bg-blue-500 hover:text-white">
-              Generate
-            </button>
-          </td>
-        </tr>
+        <StudentKeyRows />
       </tbody>
     </table>
   )
 }
 
 export default StudentKeysTable
+
+//
+
+const StudentKeyRows: React.FC = () => {
+  const status = useSelector(selectFetchStatus)
+  const keyIds = useSelector(selectStudentKeyIds)
+
+  if (status === 'pending') {
+    return (
+      <tr>
+        <td colSpan={6} className="font-semibold text-gray-600">
+          Loading...
+        </td>
+      </tr>
+    )
+  }
+
+  if (status === 'success') {
+    return (
+      <>
+        {keyIds.length > 0 ? (
+          <TransitionGroup component={null}>
+            {keyIds.map((id, i) => {
+              return (
+                <Fade
+                  key={id}
+                  delay={20 * i}
+                  renderComponent={(nodeRef) => <TableKeyRow ref={nodeRef} keyId={id as number} />}
+                />
+              )
+            })}
+          </TransitionGroup>
+        ) : (
+          <tr>
+            <td colSpan={6} className="font-semibold text-gray-600">
+              No records found.
+            </td>
+          </tr>
+        )}
+      </>
+    )
+  }
+
+  if (status === 'failure') {
+    return (
+      <tr>
+        <td colSpan={6} className="font-semibold text-gray-600">
+          There was an error fetching results.
+        </td>
+      </tr>
+    )
+  }
+
+  return (
+    <tr>
+      <td colSpan={6} className="font-semibold text-gray-600">
+        Please wait...
+      </td>
+    </tr>
+  )
+}

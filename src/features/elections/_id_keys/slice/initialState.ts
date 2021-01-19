@@ -1,21 +1,9 @@
 import { RequestStatus } from 'api/types'
-import { Student, StudentVoteKeys } from 'api/types/Models'
 import { studentKeysAdapter } from './adapters'
 
-export type StudentKeys = Pick<StudentVoteKeys.Fields, 'id' | 'confirmation_code'> &
-  Pick<
-    Student.Fields,
-    | 'student_number'
-    | 'lastname'
-    | 'firstname'
-    | 'middlename'
-    | 'suffix'
-    | 'sex'
-    | 'can_vote'
-    | 'course_id'
-  >
-
 export interface StateProps extends ReturnType<typeof studentKeysAdapter.getInitialState> {
+  electionId?: number
+
   status: RequestStatus
   pagination: {
     current_page: number
@@ -27,15 +15,16 @@ export interface StateProps extends ReturnType<typeof studentKeysAdapter.getInit
 
   exportLink: string
 
-  checkedCount: { withKey: number; all: number }
+  checkedCount: { withCode: number; all: number }
 
   groupDeleteModal: {
     open: boolean
-    studentIds: number[]
   }
 }
 
 const initialState: StateProps = {
+  electionId: undefined,
+
   ids: [],
   entities: {},
   status: 'idle',
@@ -50,11 +39,10 @@ const initialState: StateProps = {
     total: 0,
   },
 
-  checkedCount: { withKey: 0, all: 0 },
+  checkedCount: { withCode: 0, all: 0 },
 
   groupDeleteModal: {
     open: false,
-    studentIds: [],
   },
 }
 

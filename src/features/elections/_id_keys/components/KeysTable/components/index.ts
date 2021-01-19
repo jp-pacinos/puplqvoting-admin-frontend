@@ -1,2 +1,2 @@
 export { default as TableAllCheckbox } from './TableAllCheckbox'
-export { default as TableRow } from './TableRow'
+export { default as TableKeyRow } from './TableKeyRow'

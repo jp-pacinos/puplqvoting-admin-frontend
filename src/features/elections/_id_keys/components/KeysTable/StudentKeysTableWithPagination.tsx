@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react'
+import { useSelector } from 'react-redux'
 
 import { Pagination } from 'common/components'
 import StudentKeysTable from './StudentKeysTable'
@@ -9,47 +10,38 @@ interface Props {
 }
 
 const StudentKeysTableWithPagination: React.FC<Props> = ({ usePage, usePerPage }) => {
-  const renderPagination = (
-    <Pagination
-      from={0}
-      to={4}
-      total={100}
-      page={1}
-      perPage={10}
-      onChangePage={() => {}}
-      onChangePerPage={() => {}}
-    />
-  )
+  const [page, setPage] = usePage()
+  const [perPage, setPerPage] = usePerPage()
 
-  // const pagination = useSelector(selectPagination)
-  // const studentsCount = useSelector(selectStudentsTotal)
+  const from = useSelector((state) => state.election.electionKeysPage.pagination.from)
+  const to = useSelector((state) => state.election.electionKeysPage.pagination.to)
+  const total = useSelector((state) => state.election.electionKeysPage.pagination.total)
 
-  // const handlePageChange = (page: number) => {
-  //   setPage(page)
-  // }
+  const handlePageChange = (page: number) => {
+    setPage(page)
+  }
 
-  // const handlePerPageChange = (perPage: number) => {
-  //   setPage(1)
-  //   setPerPage(perPage)
-  // }
-
-  // const renderPagination = pagination.total > 0 && (
-  //   <Pagination
-  //     from={pagination.from}
-  //     to={pagination.to}
-  //     total={pagination.total}
-  //     page={page}
-  //     perPage={perPage}
-  //     onChangePage={handlePageChange}
-  //     onChangePerPage={handlePerPageChange}
-  //   />
-  // )
+  const handlePerPageChange = (perPage: number) => {
+    setPage(1)
+    setPerPage(perPage)
+  }
 
   return (
     <>
       <StudentKeysTable />
 
-      <div className="mt-5">{renderPagination}</div>
+      <div className="mt-5">
+        <Pagination
+          from={from}
+          to={to}
+          total={total}
+          page={page}
+          perPage={perPage}
+          showPerPage={total > 10}
+          onChangePage={handlePageChange}
+          onChangePerPage={handlePerPageChange}
+        />
+      </div>
     </>
   )
 }
