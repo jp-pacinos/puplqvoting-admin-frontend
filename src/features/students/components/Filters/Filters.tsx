@@ -12,8 +12,8 @@ interface Props {
 }
 
 const Filters: React.FC<Props> = ({ value, onChange }) => {
-  const handleOnChange = (e: React.FormEvent<HTMLSelectElement>) => {
-    onChange({ ...value, [e.currentTarget.name]: e.currentTarget.value })
+  const handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onChange({ ...value, [e.target.name]: e.target.value })
   }
 
   const handleOnReset = () => {
