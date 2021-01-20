@@ -96,7 +96,7 @@ export default Students
 
 const ButtonCourses: React.FC = React.memo(() => {
   return (
-    <Link to="/courses">
+    <Link to="/students/courses">
       <button className="btn btn-green btn-lg font-semibold mr-2">Courses</button>
     </Link>
   )
