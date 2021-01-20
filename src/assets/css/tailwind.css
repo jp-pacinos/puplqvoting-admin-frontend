@@ -299,6 +299,25 @@
   }
 }
 
+/* course table */
+@layer components {
+  .course-table tr {
+    @apply text-left;
+  }
+  .course-table th {
+    top: 10%;
+    @apply text-left sticky text-blue-500 bg-gray-100 font-normal;
+  }
+  .course-table th:nth-child(4) {
+    @apply text-center;
+  }
+
+  /* actions */
+  .course-table td:nth-child(4) {
+    @apply text-center;
+  }
+}
+
 /* party - officials table */
 @layer components {
   .officials-table th {

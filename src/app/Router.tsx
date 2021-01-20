@@ -14,6 +14,7 @@ import {
 } from 'features/elections'
 import { PartiesPage, PartiesPage_Id } from 'features/parties'
 import { StudentsPage } from 'features/students'
+import { CoursesPage } from 'features/courses'
 import { NotFoundPage } from 'features/404'
 
 const Router: React.FC<{}> = () => {
@@ -40,6 +41,7 @@ const Router: React.FC<{}> = () => {
       <RouteWithLayout path="/parties/:id" layout={MainLayout} component={PartiesPage_Id} exact />
 
       <RouteWithLayout path="/students" layout={MainLayout} component={StudentsPage} exact />
+      <RouteWithLayout path="/students/courses" layout={MainLayout} component={CoursesPage} exact />
 
       <Route to="/404-not-found" component={NotFoundPage} exact />
 

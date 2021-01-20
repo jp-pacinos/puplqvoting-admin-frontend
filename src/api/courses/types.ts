@@ -22,14 +22,16 @@ export declare namespace ApiResponse {
 }
 
 export declare namespace ApiFunction {
+  export type getCoursesParams = { search?: string; config?: AxiosRequestConfig }
+
   export type addCourseParams = {
-    data: Course.Fields
+    data: Course.Fillable
     config?: AxiosRequestConfig
   }
 
   export type updateCourseParams = {
     id: number
-    changes: Course.Fields
+    changes: Course.Fillable
     config?: AxiosRequestConfig
   }
 
@@ -43,7 +45,7 @@ export declare namespace ApiFunction {
    */
 
   export interface getCourses {
-    (params: { config?: AxiosRequestConfig }): Promise<AxiosResponse<ApiResponse.getCourses>>
+    (params?: getCoursesParams): Promise<AxiosResponse<ApiResponse.getCourses>>
   }
 
   export interface addCourse {

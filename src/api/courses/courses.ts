@@ -3,8 +3,9 @@ import { ApiFunction } from './types'
 
 const baseUrl = '/r/courses'
 
-export const getCourses: ApiFunction.getCourses = ({ config = {} }) => {
-  return apiClient.get(baseUrl, config)
+export const getCourses: ApiFunction.getCourses = ({ search, config = {} } = {}) => {
+  let url = search ? `${baseUrl}?s=${search}` : baseUrl
+  return apiClient.get(url, config)
 }
 
 export const addCourse: ApiFunction.addCourse = ({ data, config = {} }) => {

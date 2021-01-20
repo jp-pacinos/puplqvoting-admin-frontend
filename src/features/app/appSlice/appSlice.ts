@@ -34,6 +34,21 @@ const appSlice = createSlice({
         },
       })
     },
+
+    courseAdded(state, action: PayloadAction<Models.Course.Fields>) {
+      coursesAdapter.addOne(state.courses, action.payload)
+    },
+
+    courseUpdated(state, action: PayloadAction<{ id: EntityId; changes: Models.Course.Fillable }>) {
+      coursesAdapter.updateOne(state.courses, {
+        id: action.payload.id,
+        changes: action.payload.changes,
+      })
+    },
+
+    courseDeleted(state, action: PayloadAction<{ id: EntityId }>) {
+      coursesAdapter.removeOne(state.courses, action.payload.id)
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchSelects.fulfilled, (state, { payload }) => {
@@ -48,4 +63,11 @@ export default appSlice
 
 export const reducer = appSlice.reducer
 
-export const { sessionAdded, sessionDeleted, sessionUpdated } = appSlice.actions
+export const {
+  sessionAdded,
+  sessionDeleted,
+  sessionUpdated,
+  courseAdded,
+  courseUpdated,
+  courseDeleted,
+} = appSlice.actions
