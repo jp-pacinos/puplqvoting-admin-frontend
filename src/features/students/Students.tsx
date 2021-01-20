@@ -66,7 +66,7 @@ const Students: React.FC<Props> = ({ usePage, usePerPage, useSearch, useFilters 
           <div>{FilterButton}</div>
         </div>
 
-        <div className="ml-3">
+        <div className="ml-3 flex items-center">
           <ButtonCourses />
           <AddStudent />
         </div>
