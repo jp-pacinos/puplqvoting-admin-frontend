@@ -57,7 +57,7 @@ export const groupGenerateKeys = createAsyncThunk(
 
 export const groupDeleteKeys = createAsyncThunk(
   'keys/groupDeleteKeys',
-  async (params: ApiFunction.groupActionStudentKeysParams & { keyIds: number[] }, { dispatch }) => {
+  async (params: ApiFunction.groupActionStudentKeysParams, { dispatch }) => {
     dispatch(
       snackbarOpen({
         text: `${params.studentIds.length} Student keys deleted.`,

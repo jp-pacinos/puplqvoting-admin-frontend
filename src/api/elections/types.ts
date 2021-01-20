@@ -29,10 +29,10 @@ export declare namespace ApiResponse {
     student: Pick<Student.Fields, 'id' | 'lastname' | 'firstname' | 'middlename' | 'suffix'>
   }
 
-  export type StudentKeys = Pick<StudentVoteKeys.Fields, 'id' | 'confirmation_code'> & {
-    student_id: Student.Fields['id']
-  } & Pick<
+  export type StudentKeys = Pick<StudentVoteKeys.Fields, 'confirmation_code'> &
+    Pick<
       Student.Fields,
+      | 'id'
       | 'student_number'
       | 'lastname'
       | 'firstname'

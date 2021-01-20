@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { FiX } from 'react-icons/fi'
 
+import { AppDispatch } from 'app/store'
 import FloatBox, { PositionProps } from 'common/components/Core/FloatBox'
 import {
   checkboxToggleAll,
@@ -68,32 +69,27 @@ export default KeysTableGroupActions
 const ButtonGroupGenerateKeys: React.FC<{ selectedCount: number }> = ({ selectedCount }) => {
   const electionId = useSelector(selectElectionId)
   const studentKeys = useSelector(selectStudentKeys)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   const [loading, setLoading] = useState(false)
 
   if (!studentKeys) return null
 
-  const handleGenerateKeys = async () => {
+  const handleGenerateKeys = () => {
     let studentIds = []
     for (let i = 0; i < studentKeys.length; i++) {
       if (studentKeys[i].checked && studentKeys[i].confirmation_code === null) {
-        studentIds.push(studentKeys[i].student_id)
+        studentIds.push(studentKeys[i].id)
       }
     }
 
-    try {
-      setLoading(true)
-      await dispatch(
-        groupGenerateKeys({
-          sessionId: electionId as number,
-          studentIds,
-        })
-      )
-      setLoading(false)
-    } catch (e) {
-      //
-    }
+    setLoading(true)
+    dispatch(
+      groupGenerateKeys({
+        sessionId: electionId as number,
+        studentIds,
+      })
+    )
   }
 
   return (

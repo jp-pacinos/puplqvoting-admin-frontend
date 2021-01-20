@@ -29,18 +29,16 @@ const ModalGroupDeleteKey: React.FC<Props> = () => {
   const onClickDelete = () => {
     if (!studentKeys) return
 
-    let keyIds: number[] = []
     let studentIds: number[] = []
     for (let i = 0; i < studentKeys.length; i++) {
       if (studentKeys[i].checked && studentKeys[i].confirmation_code !== null) {
-        keyIds.push(studentKeys[i].id)
-        studentIds.push(studentKeys[i].student_id)
+        studentIds.push(studentKeys[i].id)
       }
     }
 
     batch(() => {
       dispatch(groupDeleteModalClose())
-      dispatch(groupDeleteKeys({ sessionId: electionId as number, studentIds, keyIds }))
+      dispatch(groupDeleteKeys({ sessionId: electionId as number, studentIds }))
     })
   }
 

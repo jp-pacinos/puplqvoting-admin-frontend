@@ -102,7 +102,7 @@ const electionKeysSlice = createSlice({
         state,
         action.payload.data.map((key) => {
           return {
-            id: key.id,
+            id: key.student_id,
             changes: {
               checked: false,
               confirmation_code: key.confirmation_code,
@@ -119,7 +119,7 @@ const electionKeysSlice = createSlice({
      */
 
     builder.addCase(groupDeleteKeys.pending, (state, action) => {
-      let ids = action.meta.arg.keyIds
+      let ids = action.meta.arg.studentIds
 
       studentKeysAdapter.updateMany(
         state,
@@ -133,7 +133,7 @@ const electionKeysSlice = createSlice({
       state.checkedCount.withCode -= ids.length
     })
     builder.addCase(groupDeleteKeys.fulfilled, (state, action) => {
-      let ids = action.meta.arg.keyIds
+      let ids = action.meta.arg.studentIds
 
       studentKeysAdapter.updateMany(
         state,
@@ -147,7 +147,7 @@ const electionKeysSlice = createSlice({
       )
     })
     builder.addCase(groupDeleteKeys.rejected, (state, action) => {
-      let ids = action.meta.arg.keyIds
+      let ids = action.meta.arg.studentIds
 
       studentKeysAdapter.updateMany(
         state,

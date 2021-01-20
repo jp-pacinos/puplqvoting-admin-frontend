@@ -42,7 +42,7 @@ const TableKeyRow: React.FC<Props> = forwardRef(({ keyId }, ref) => {
       <td>
         <CourseAcronym id={student.course_id} />
       </td>
-      <td>{haveCode ? code : <ButtonGenerate keyId={keyId} studentId={student.student_id} />}</td>
+      <td>{haveCode ? code : <ButtonGenerate studentId={keyId} />}</td>
     </tr>
   )
 })
@@ -87,11 +87,10 @@ const StudentCheckbox: React.FC<StudentCheckboxProps> = ({
 }
 
 interface ButtonGenerateProps extends React.ComponentPropsWithoutRef<'button'> {
-  keyId: EntityId
-  studentId: number
+  studentId: EntityId
 }
 
-const ButtonGenerate: React.FC<ButtonGenerateProps> = ({ keyId, studentId, ...rest }) => {
+const ButtonGenerate: React.FC<ButtonGenerateProps> = ({ studentId, ...rest }) => {
   const electionId = useSelector(selectElectionId)
   const dispatch = useDispatch()
 
@@ -107,7 +106,7 @@ const ButtonGenerate: React.FC<ButtonGenerateProps> = ({ keyId, studentId, ...re
 
       dispatch(
         setStudentCode({
-          keyId,
+          keyId: studentId,
           code: data.data.confirmation_code as string,
         })
       )
@@ -115,7 +114,11 @@ const ButtonGenerate: React.FC<ButtonGenerateProps> = ({ keyId, studentId, ...re
   }
 
   return (
-    <GenerateKey sessionId={electionId as number} studentId={studentId} onSuccess={handleSuccess}>
+    <GenerateKey
+      sessionId={electionId as number}
+      studentId={studentId as number}
+      onSuccess={handleSuccess}
+    >
       {({ generate, loading }) => (
         <button
           onClick={generate}

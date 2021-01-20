@@ -62,7 +62,7 @@ const StudentKeyRows: React.FC = () => {
               return (
                 <Fade
                   key={id}
-                  delay={20 * i}
+                  delay={10 * i}
                   renderComponent={(nodeRef) => <TableKeyRow ref={nodeRef} keyId={id as number} />}
                 />
               )
