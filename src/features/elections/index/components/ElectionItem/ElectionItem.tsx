@@ -50,7 +50,7 @@ const ElectionItem: React.FC<Props> = ({ election, ...rest }) => {
         <div className="flex flex-wrap items-baseline mb-2">
           <h2 className="text-gray-700 font-bold text-lg leading-relaxed mr-3">{election.name}</h2>
 
-          <Fade delay={isSelected ? 0 : 250} className="flex-grow flex flex-wrap my-1 md:my-0">
+          <Fade delay={isSelected ? 0 : 100} className="flex-grow flex flex-wrap my-1 md:my-0">
             <Status status={status} />
             {haveRegistration && <StatusRegistration isOngoing={isRegistrationStarted} />}
             <StatusVotingConfirmation type={election.verification_type} />
