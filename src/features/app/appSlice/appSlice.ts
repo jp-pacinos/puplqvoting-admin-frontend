@@ -9,7 +9,7 @@ const appSlice = createSlice({
   name: 'selects',
   initialState,
   reducers: {
-    newSession(state, action: PayloadAction<Models.Session.Fields>) {
+    sessionAdded(state, action: PayloadAction<Models.Session.Fields>) {
       sessionAdaper.addOne(state.sessions, {
         id: action.payload.id,
         name: action.payload.name,
@@ -48,4 +48,4 @@ export default appSlice
 
 export const reducer = appSlice.reducer
 
-export const { newSession, sessionDeleted, sessionUpdated } = appSlice.actions
+export const { sessionAdded, sessionDeleted, sessionUpdated } = appSlice.actions

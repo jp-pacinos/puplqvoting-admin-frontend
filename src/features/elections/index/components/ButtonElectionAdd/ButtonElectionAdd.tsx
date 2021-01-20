@@ -3,7 +3,7 @@ import { useDispatch, batch } from 'react-redux'
 
 import { Models } from 'api/types'
 import { snackbarOpen } from 'features/snackbar'
-import { newSession } from 'features/app/appSlice'
+import { sessionAdded } from 'features/app/appSlice'
 import { electionAdded } from 'features/elections/index/slice'
 import { ModalAddElection } from 'features/elections/components'
 
@@ -24,7 +24,7 @@ const ButtonElectionAdd: React.FC<Props> = () => {
         })
       )
 
-      dispatch(newSession(election))
+      dispatch(sessionAdded(election))
     })
   }
 
