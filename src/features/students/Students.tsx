@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { MdFilterList } from 'react-icons/md'
 
 import { Search } from 'common/components'
@@ -66,6 +67,7 @@ const Students: React.FC<Props> = ({ usePage, usePerPage, useSearch, useFilters 
         </div>
 
         <div className="ml-3">
+          <ButtonCourses />
           <AddStudent />
         </div>
       </div>
@@ -91,3 +93,11 @@ const Students: React.FC<Props> = ({ usePage, usePerPage, useSearch, useFilters 
 export default Students
 
 //
+
+const ButtonCourses: React.FC = React.memo(() => {
+  return (
+    <Link to="/courses">
+      <button className="btn btn-green btn-lg font-semibold mr-2">Courses</button>
+    </Link>
+  )
+})
