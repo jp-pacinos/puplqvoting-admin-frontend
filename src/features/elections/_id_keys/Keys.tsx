@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { Fade } from 'common/components/Transitions'
 import {
   Filters,
-  ButtonExportRecords,
+  // ButtonExportRecords,
   KeysTable,
   KeysTableGroupActions,
   ModalGroupDeleteKey,
@@ -27,7 +27,7 @@ const Keys: React.FC<Props> = ({ usePage, usePerPage, useSearch, useFilters }) =
       <Fade delay={175} className="card">
         <div className="flex justify-between mb-3 items-center">
           <h4 className="text-blue-600 font-medium leading-loose">Student Keys</h4>
-          <ButtonExportRecords />
+          {/* <ButtonExportRecords /> */}
         </div>
         <KeysTable {...{ usePage, usePerPage }} />
       </Fade>
