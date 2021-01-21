@@ -44,16 +44,18 @@ const coursesSlice = createSlice({
   initialState,
 
   reducers: {
-    // courseAdded(state, action: PayloadAction<Course.Fields>) {
-    //   coursesAdapter.addOne(state, action.payload)
-    // },
-
     addModalOpen(state) {
-      state.addModal.open = true
+      state.addModal = {
+        ...initialState.addModal,
+        open: true,
+      }
     },
 
     addModalClose(state) {
-      state.addModal.open = false
+      state.addModal = {
+        ...initialState.addModal,
+        open: false,
+      }
     },
 
     deleteModalOpen(state, action: PayloadAction<{ id: EntityId }>) {
@@ -119,11 +121,21 @@ const coursesSlice = createSlice({
     })
 
     builder.addCase(addCourse.fulfilled, (state, action) => {
+      coursesAdapter.addOne(state, action.payload.course)
       state.addModal.status = 'success'
+      state.addModal.open = false
     })
 
     builder.addCase(addCourse.rejected, (state, action) => {
-      //
+      let hasValidation = action.payload as ApiValidationResponse.addCourse | undefined
+
+      // axios error.response.data
+      if (hasValidation) {
+        state.addModal.validation = hasValidation
+        state.addModal.status = 'validating'
+        return
+      }
+      state.addModal.status = 'failure'
     })
 
     /**

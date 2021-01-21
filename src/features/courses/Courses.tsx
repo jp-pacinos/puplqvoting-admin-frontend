@@ -1,10 +1,12 @@
 import React, { Dispatch, SetStateAction } from 'react'
+import { useDispatch } from 'react-redux'
 
 import { Search } from 'common/components'
 import { Fade } from 'common/components/Transitions'
+import { addModalOpen } from 'features/courses'
 import usePageBack from 'common/hooks/usePageBack'
 
-import { CoursesTable, ModalDeleteCourse } from './components'
+import { CoursesTable, ModalAddCourse, ModalDeleteCourse } from './components'
 
 interface Props {
   useSearch: () => [string, Dispatch<SetStateAction<string>>]
@@ -12,8 +14,6 @@ interface Props {
 
 const Courses: React.FC<Props> = ({ useSearch }) => {
   const [search, setSearch] = useSearch()
-
-  const goBack = usePageBack()
 
   return (
     <>
@@ -29,10 +29,8 @@ const Courses: React.FC<Props> = ({ useSearch }) => {
         </div>
 
         <div className="ml-3 flex items-center">
-          <button onClick={goBack} className="btn btn-green btn-lg font-semibold mr-2">
-            Students
-          </button>
-          <button className="btn btn-blue btn-lg font-semibold">+ New Course</button>
+          <ButtonGotoStudents />
+          <ButtonAddCourse />
         </div>
       </div>
 
@@ -42,6 +40,7 @@ const Courses: React.FC<Props> = ({ useSearch }) => {
         <CoursesTable />
       </Fade>
 
+      <ModalAddCourse />
       <ModalDeleteCourse />
     </>
   )
@@ -50,3 +49,23 @@ const Courses: React.FC<Props> = ({ useSearch }) => {
 export default Courses
 
 //
+
+const ButtonGotoStudents: React.FC = () => {
+  const goBack = usePageBack()
+
+  return (
+    <button onClick={goBack} className="btn btn-green btn-lg font-semibold mr-2">
+      Students
+    </button>
+  )
+}
+
+const ButtonAddCourse: React.FC = () => {
+  const dispatch = useDispatch()
+
+  return (
+    <button onClick={() => dispatch(addModalOpen())} className="btn btn-blue btn-lg font-semibold">
+      + New Course
+    </button>
+  )
+}
