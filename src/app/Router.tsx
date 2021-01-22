@@ -16,6 +16,7 @@ import {
 import { PartiesPage, PartiesPage_Id } from 'features/parties'
 import { StudentsPage } from 'features/students'
 import { CoursesPage } from 'features/courses'
+import { AccountPage } from 'features/account'
 import { NotFoundPage } from 'features/404'
 
 import { Snackbar } from 'features/snackbar'
@@ -67,6 +68,8 @@ const RouteAuth: React.FC = () => {
 
         <Route path="/students" component={StudentsPage} exact />
         <Route path="/students/courses" component={CoursesPage} exact />
+
+        <Route path="/account" component={AccountPage} exact />
 
         <Route path="/404-not-found" component={NotFoundPage} exact />
         <Redirect to="/404-not-found" from="*" />

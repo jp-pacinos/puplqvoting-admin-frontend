@@ -7,4 +7,13 @@ export declare namespace ApiFunction {
       AxiosResponse<{ token: string } & { user: Pick<UserAdmin.Fields, 'id' | 'name' | 'email'> }>
     >
   }
+
+  export interface updateUser {
+    (params: {
+      id: number
+      data: UserAdmin.Fillable & { confirmPassword: string; oldPassword: string }
+    }): Promise<
+      AxiosResponse<{ message: string; user: Pick<UserAdmin.Fields, 'id' | 'name' | 'email'> }>
+    >
+  }
 }

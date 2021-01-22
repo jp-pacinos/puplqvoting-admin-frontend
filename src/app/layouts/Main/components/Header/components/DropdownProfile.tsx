@@ -34,7 +34,7 @@ const DropdownProfile: React.FC<Props> = () => {
       )}
       childrenProps={{ 'aria-labelledby': 'user-menu' }}
     >
-      <Link role="menuitem" to="/profile" className={dropdownLinkStyle}>
+      <Link role="menuitem" to="/account" className={dropdownLinkStyle}>
         Account
       </Link>
       <a onClick={onClickLogout} role="menuitem" href="/logout" className={dropdownLinkStyle}>

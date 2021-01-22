@@ -21,7 +21,7 @@ export declare namespace UserAdmin {
     remember_token: string | null
   }
 
-  export type Fillable = Pick<Fields, 'name' | 'email' | 'password' | 'remember_token'>
+  export type Fillable = Pick<Fields, 'name' | 'email' | 'password'>
 }
 
 /**
