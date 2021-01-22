@@ -2,6 +2,11 @@ import { sessionAdaper, coursesAdapter, positionsAdapter } from './adapters'
 import { StateProps } from './types'
 
 const initialState: StateProps = {
+  auth: {
+    token: localStorage.getItem('auth-token') || null,
+    user: JSON.parse(localStorage.getItem('auth-user') || '{}'),
+  },
+
   sex: [
     {
       text: 'Male',

@@ -1,6 +1,6 @@
 import { EntityState } from '@reduxjs/toolkit'
 import { Student as StudentModel } from 'api/types/Models'
-import { Session } from 'api/types/Models'
+import { Session, UserAdmin } from 'api/types/Models'
 import { Models } from 'api/selects'
 
 export interface OptionProps<T> {
@@ -9,6 +9,14 @@ export interface OptionProps<T> {
 }
 
 export interface StateProps {
+  /**
+   * auth
+   */
+  auth: {
+    token: string | null
+    user: Partial<Pick<UserAdmin.Fields, 'id' | 'name' | 'email'>>
+  }
+
   /**
    * selects data
    */

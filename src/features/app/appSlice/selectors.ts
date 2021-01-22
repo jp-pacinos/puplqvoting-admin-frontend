@@ -2,6 +2,24 @@ import { createSelector } from '@reduxjs/toolkit'
 import { RootState } from 'app/store'
 import { sessionAdaper, coursesAdapter, positionsAdapter } from './adapters'
 
+/**
+ * auth
+ */
+
+export const selectAuth = (state: RootState) => state.app.auth
+
+export const selectIsAuth = createSelector(selectAuth, (auth) => {
+  return typeof auth.token === 'string' && auth.token.length > 0
+})
+
+export const selectAuthUser = createSelector(selectAuth, (auth) => {
+  return auth.user
+})
+
+/**
+ * selects
+ */
+
 export const { selectAll: selectSessions } = sessionAdaper.getSelectors(
   (state: RootState) => state.app.sessions
 )
