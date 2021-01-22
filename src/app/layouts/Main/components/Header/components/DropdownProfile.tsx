@@ -1,17 +1,22 @@
 import React from 'react'
-import { Link, LinkProps } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import ProfileAvatar from 'assets/images/avatar.png'
 import Dropdown from './Dropdown'
 
-interface Props {
-  //
-}
+import useClearSession from 'common/hooks/useClearSession'
+
+const dropdownLinkStyle =
+  'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out'
+
+interface Props {}
 
 const DropdownProfile: React.FC<Props> = () => {
-  const logout = () => {
-    localStorage.clear()
-    sessionStorage.clear()
+  const clearSession = useClearSession({ reload: true })
+
+  const onClickLogout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault()
+    clearSession()
   }
 
   return (
@@ -29,24 +34,14 @@ const DropdownProfile: React.FC<Props> = () => {
       )}
       childrenProps={{ 'aria-labelledby': 'user-menu' }}
     >
-      <DropdownLink to="/profile">Account</DropdownLink>
-      <DropdownLink to="/login" onClick={logout}>
+      <Link role="menuitem" to="/profile" className={dropdownLinkStyle}>
+        Account
+      </Link>
+      <a onClick={onClickLogout} role="menuitem" href="/logout" className={dropdownLinkStyle}>
         Sign out
-      </DropdownLink>
+      </a>
     </Dropdown>
   )
 }
 
 export default DropdownProfile
-
-//
-
-const DropdownLink: React.FC<LinkProps> = (props) => {
-  return (
-    <Link
-      role="menuitem"
-      className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
-      {...props}
-    />
-  )
-}
