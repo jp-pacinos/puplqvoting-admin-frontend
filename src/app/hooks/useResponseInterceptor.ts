@@ -5,7 +5,7 @@ import apiClient from 'api/apiClient'
 import store from 'app/store'
 import { snackbarOpen } from 'features/snackbar'
 
-export function useResponseInterceptor() {
+function useResponseInterceptor() {
   useEffect(() => {
     const myErrorInterceptor = apiClient.interceptors.response.use(
       (response) => response,
@@ -61,3 +61,5 @@ export function useResponseInterceptor() {
     }
   })
 }
+
+export default useResponseInterceptor
