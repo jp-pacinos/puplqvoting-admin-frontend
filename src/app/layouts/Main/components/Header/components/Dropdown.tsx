@@ -31,7 +31,9 @@ const Dropdown: React.FC<Props> = ({ renderContent, children, childrenProps = {}
           aria-labelledby="dropdown-menu"
           {...childrenProps}
         >
-          {children}
+          {React.Children.map(children, (child: any) => {
+            return <div onClick={() => setActive(false)}>{child}</div>
+          })}
         </div>
       </FadeGrow>
     </ClickAwayListener>
