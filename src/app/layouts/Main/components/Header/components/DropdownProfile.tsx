@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { AiOutlineUser } from 'react-icons/ai'
 
-import ProfileAvatar from 'assets/images/avatar.png'
+import { IconButton } from 'common/components/Core'
 import Dropdown from './Dropdown'
 
 import useClearSession from 'common/hooks/useClearSession'
@@ -22,15 +23,16 @@ const DropdownProfile: React.FC<Props> = () => {
   return (
     <Dropdown
       renderContent={({ active, setActive }) => (
-        <button
+        <IconButton
           onClick={() => setActive(!active)}
-          className="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out"
+          className="bg-gray-200 text-lg border hover:text-blue-500 focus:bg-blue-500 focus:text-white focus:shadow-lg"
+          title="Account"
           id="user-menu"
           aria-label="User menu"
           aria-haspopup="true"
         >
-          <img className="h-8 w-8 rounded-full" src={ProfileAvatar} alt="admin" />
-        </button>
+          <AiOutlineUser />
+        </IconButton>
       )}
       childrenProps={{ 'aria-labelledby': 'user-menu' }}
     >
