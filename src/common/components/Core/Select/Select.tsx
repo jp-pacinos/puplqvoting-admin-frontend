@@ -1,13 +1,11 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
-import { SelectProps } from './types'
+import { SelectProps as Props } from './types'
 
-const Select: React.FC<SelectProps> = ({ items, placeholder = '', className = '', ...rest }) => {
-  let selectClass = useMemo(() => `select__input${className ? ` ${className}` : ''}`, [className])
-
+const Select: React.FC<Props> = ({ items, placeholder, className, ...rest }) => {
   return (
     <div className="select">
-      <select className={selectClass} {...rest}>
+      <select className={className ? `select__input ${className}` : 'select__input'} {...rest}>
         {placeholder && <option value="">{placeholder}</option>}
 
         {items.map((item) => (

@@ -44,30 +44,6 @@ const Pagination: React.FC<Props> = ({
     return options
   }, [totalPage])
 
-  const handleFirstPage = () => {
-    onChangePage(1)
-  }
-
-  const handlePrevPage = () => {
-    onChangePage(page - 1)
-  }
-
-  const handleNextPage = () => {
-    onChangePage(page + 1)
-  }
-
-  const handleLastPage = () => {
-    onChangePage(totalPage)
-  }
-
-  const handlePerPage = (e: React.FormEvent<HTMLSelectElement>) => {
-    onChangePerPage(parseInt(e.currentTarget.value))
-  }
-
-  const handlePage = (e: React.FormEvent<HTMLSelectElement>) => {
-    onChangePage(parseInt(e.currentTarget.value))
-  }
-
   return (
     <div className="flex flex-wrap justify-between items-center">
       <div className="flex items-center">
@@ -78,7 +54,7 @@ const Pagination: React.FC<Props> = ({
                 name="perpage-select"
                 value={perPage}
                 items={perPageSelect}
-                onChange={handlePerPage}
+                onChange={(e) => onChangePerPage(parseInt(e.target.value))}
                 className="py-1 font-normal border"
               />
             </div>
@@ -100,7 +76,7 @@ const Pagination: React.FC<Props> = ({
               name="page-select"
               value={page}
               items={pagesSelect}
-              onChange={handlePage}
+              onChange={(e) => onChangePage(parseInt(e.target.value))}
               className="py-1 font-normal border"
             />
           </div>
@@ -108,20 +84,20 @@ const Pagination: React.FC<Props> = ({
 
         {!firstPage && (
           <>
-            <button onClick={handleFirstPage} className="btn btn-gray ml-1">
+            <button onClick={() => onChangePage(1)} className="btn btn-gray ml-1">
               First
             </button>
-            <button onClick={handlePrevPage} className="btn btn-gray ml-1 w-20">
+            <button onClick={() => onChangePage(page - 1)} className="btn btn-gray ml-1 w-20">
               Prev
             </button>
           </>
         )}
         {!lastPage && (
           <>
-            <button onClick={handleNextPage} className="btn btn-gray ml-1 w-20">
+            <button onClick={() => onChangePage(page + 1)} className="btn btn-gray ml-1 w-20">
               Next
             </button>
-            <button onClick={handleLastPage} className="btn btn-gray ml-1">
+            <button onClick={() => onChangePage(totalPage)} className="btn btn-gray ml-1">
               Last
             </button>
           </>

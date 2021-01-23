@@ -1,14 +1,15 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
-interface CheckboxProps extends React.ComponentPropsWithoutRef<'input'> {}
+interface Props extends React.ComponentPropsWithoutRef<'input'> {}
 
-const Checkbox: React.FC<CheckboxProps> = ({ className, ...rest }) => {
-  let rootClass = useMemo(() => {
-    let base = 'form-checkbox'
-    return `${className ? `${base} ${className}` : base}`
-  }, [className])
-
-  return <input type="checkbox" className={rootClass} {...rest} />
+const Checkbox: React.FC<Props> = ({ className, ...rest }) => {
+  return (
+    <input
+      type="checkbox"
+      className={className ? `form-checkbox ${className}` : 'form-checkbox'}
+      {...rest}
+    />
+  )
 }
 
 export default Checkbox

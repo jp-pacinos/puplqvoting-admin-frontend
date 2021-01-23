@@ -1,15 +1,9 @@
-import React, { useMemo } from 'react'
-
-const baseRootClass = 'input'
+import React from 'react'
 
 interface TextAreaProps extends React.ComponentPropsWithoutRef<'textarea'> {}
 
-const TextArea: React.FC<TextAreaProps> = ({ className = '', ...rest }) => {
-  let rootClass = useMemo(() => (className ? `${baseRootClass} ${className}` : baseRootClass), [
-    className,
-  ])
-
-  return <textarea className={rootClass} {...rest} />
+const TextArea: React.FC<TextAreaProps> = ({ className, ...rest }) => {
+  return <textarea className={className ? `input ${className}` : 'input'} {...rest} />
 }
 
-export default TextArea
+export default React.memo(TextArea)

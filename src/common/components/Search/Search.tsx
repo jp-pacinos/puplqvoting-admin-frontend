@@ -1,23 +1,23 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import Input from 'common/components/Core/Input'
-
-const baseClass = 'search__input'
 
 interface SearchProps extends React.ComponentPropsWithRef<'input'> {}
 
 const Search: React.FC<SearchProps> = ({
   name = 'search',
   placeholder = 'Search...',
-  className = '',
+  className,
   ...rest
 }) => {
-  let inputClass = useMemo(() => `${className ? `${baseClass} ${className}` : baseClass}`, [
-    className,
-  ])
-
   return (
     <div className="search">
-      <Input type="text" name={name} placeholder={placeholder} className={inputClass} {...rest} />
+      <Input
+        type="text"
+        name={name}
+        placeholder={placeholder}
+        className={className ? `search__input ${className}` : 'search__input'}
+        {...rest}
+      />
       <div className="search__icon">
         <svg
           className="fill-current pointer-events-none text-gray-600 w-4 h-4"

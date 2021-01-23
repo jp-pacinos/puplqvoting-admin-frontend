@@ -1,17 +1,9 @@
-import React, { useMemo, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 
-const baseRootClass = 'input'
+interface Props extends React.ComponentPropsWithRef<'input'> {}
 
-interface InputProps extends React.ComponentPropsWithRef<'input'> {
-  className?: string
-}
-
-const Input: React.FC<InputProps> = forwardRef(({ className = '', ...rest }, ref) => {
-  let rootClass = useMemo(() => (className ? `${baseRootClass} ${className}` : baseRootClass), [
-    className,
-  ])
-
-  return <input ref={ref} className={rootClass} {...rest} />
+const Input: React.FC<Props> = forwardRef(({ className, ...rest }, ref) => {
+  return <input ref={ref} className={className ? `input ${className}` : 'input'} {...rest} />
 })
 
 export default Input

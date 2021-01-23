@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 interface Props extends React.ComponentPropsWithoutRef<'p'> {
   text: string | null
@@ -13,10 +13,6 @@ const Paragraph: React.FC<Props> = ({
 }) => {
   const [text, setText] = useState('')
   const [isShowMore, setIsShowMore] = useState(false)
-
-  const paragraphClass = useMemo(() => {
-    return `paragraph${className ? ` ${className}` : ''}`
-  }, [className])
 
   useEffect(() => {
     if (typeof originalText !== 'string') {
@@ -33,43 +29,34 @@ const Paragraph: React.FC<Props> = ({
     setText(originalText)
   }, [originalText, maxLength])
 
-  const onClickMore = () => {
+  const onClickMore = useCallback(() => {
     setIsShowMore(false)
     setText(originalText as string)
-  }
+  }, [originalText])
 
-  const onClickLess = () => {
+  const onClickLess = useCallback(() => {
     setIsShowMore(true)
     setText((prevText) => prevText.slice(0, maxLength) + '...')
-  }
+  }, [maxLength])
 
   let renderButton = null
   if (originalText && originalText.length > maxLength) {
-    renderButton = isShowMore ? (
+    renderButton = (
       <button
-        onClick={onClickMore}
+        onClick={isShowMore ? onClickMore : onClickLess}
         className="text-blue-500 text-sm hover:text-blue-700 focus:outline-none"
       >
-        Show more
-      </button>
-    ) : (
-      <button
-        onClick={onClickLess}
-        className="text-blue-500 text-sm hover:text-blue-700 focus:outline-none"
-      >
-        Show less
+        {isShowMore ? 'Show more' : 'Show less'}
       </button>
     )
   }
 
   return (
     <>
-      <p className={paragraphClass} {...rest}>
-        {text}
-      </p>
+      <p className={className ? `paragraph ${className}` : 'paragraph'} children={text} {...rest} />
       {renderButton}
     </>
   )
 }
 
-export default Paragraph
+export default React.memo(Paragraph)
