@@ -130,7 +130,7 @@ export const groupUpdateStudents = createAsyncThunk(
 
     dispatch(
       snackbarOpen({
-        text: count > 1 ? `${count} Student Accounts updated.` : 'Student Account updated.',
+        text: count > 1 ? `${count} Student accounts updated.` : 'Student account updated.',
         position: { x: 'left', y: 'bottom' },
         duration: Duration.short,
       })
@@ -147,7 +147,7 @@ export const groupDeleteStudents = createAsyncThunk(
 
     dispatch(
       snackbarOpen({
-        text: count > 1 ? `${count} Student Accounts updated.` : 'Student Account updated.',
+        text: count > 1 ? `${count} Student accounts deleted.` : 'Student account deleted.',
         position: { x: 'left', y: 'bottom' },
         duration: Duration.short,
       })
