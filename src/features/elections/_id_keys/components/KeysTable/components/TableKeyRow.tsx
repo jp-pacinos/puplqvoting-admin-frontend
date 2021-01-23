@@ -100,7 +100,7 @@ const ButtonGenerate: React.FC<ButtonGenerateProps> = ({ studentId, ...rest }) =
         snackbarOpen({
           text: data.message,
           duration: 3000,
-          position: { x: 'bottom', y: 'left' },
+          position: { x: 'left', y: 'bottom' },
         })
       )
 

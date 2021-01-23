@@ -1,6 +1,9 @@
-export type DirectionProps = 'left' | 'right' | 'middle' | 'top' | 'bottom'
+export type XDirectionProps = 'left' | 'middle' | 'right'
+export type YDirectionProps = 'top' | 'middle' | 'bottom'
 
-export type PositionProps = { x: DirectionProps; y: DirectionProps }
+export type DirectionProps = XDirectionProps | YDirectionProps
+
+export type PositionProps = { x: XDirectionProps; y: YDirectionProps }
 
 export interface FloatBoxProps extends React.ComponentPropsWithoutRef<'div'> {
   open: boolean

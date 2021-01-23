@@ -37,7 +37,7 @@ export const groupGenerateKeys = createAsyncThunk(
       snackbarOpen({
         text: 'Please wait...',
         duration: 5000,
-        position: { x: 'bottom', y: 'left' },
+        position: { x: 'left', y: 'bottom' },
       })
     )
 
@@ -47,7 +47,7 @@ export const groupGenerateKeys = createAsyncThunk(
       snackbarOpen({
         text: `${params.studentIds.length} ${response.data.message}`,
         duration: 3000,
-        position: { x: 'bottom', y: 'left' },
+        position: { x: 'left', y: 'bottom' },
       })
     )
 
@@ -62,7 +62,7 @@ export const groupDeleteKeys = createAsyncThunk(
       snackbarOpen({
         text: `${params.studentIds.length} Student keys deleted.`,
         duration: 5000,
-        position: { x: 'bottom', y: 'left' },
+        position: { x: 'left', y: 'bottom' },
       })
     )
 
