@@ -1,11 +1,14 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 
 import StudentsWithModals from './StudentsWithModals'
 
 const StudentsMain: React.FC<{}> = () => {
   return (
     <>
-      {/* react-helmet here */}
+      <Helmet>
+        <title>Students</title>
+      </Helmet>
 
       <StudentsWithModals />
     </>

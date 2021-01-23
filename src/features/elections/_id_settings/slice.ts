@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createSelector, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { RootState } from 'app/store'
@@ -89,6 +89,10 @@ export const {
 
 // selectors
 export const selectElection = (state: RootState) => state.election.electionSettingsPage.election
+
+export const selectElectionName = createSelector(selectElection, (election) => {
+  return (election && election.name) || 'Election'
+})
 
 export const selectElectionId = (state: RootState) =>
   state.election.electionSettingsPage.election?.id

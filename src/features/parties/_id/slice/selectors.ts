@@ -1,9 +1,12 @@
+import { createSelector } from '@reduxjs/toolkit'
 import { RootState } from 'app/store'
 import { officialsAdapter, addOfficialsAdapter } from './adapters'
 
 export const selectParty = (state: RootState) => state.parties.partyPage.party
 
 export const selectPartyId = (state: RootState) => state.parties.partyPage.party.id
+
+export const selectPartyName = createSelector(selectParty, (party) => party.name)
 
 /**
  * officials table

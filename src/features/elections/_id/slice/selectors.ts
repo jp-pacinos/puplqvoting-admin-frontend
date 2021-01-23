@@ -5,6 +5,10 @@ import { officialsAdapter } from './adapters'
 
 export const selectElection = (state: RootState) => state.election.electionPage.election
 
+export const selectElectionName = createSelector(selectElection, (election) => {
+  return (election && election.name) || 'Election'
+})
+
 export const selectElectionIsStarted = createSelector(selectElection, (election) => {
   if (!election) return false
   if (election.started_at || election.registration_at) return true

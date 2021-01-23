@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 
 import PartiesWithFetcher from './PartiesWithFetcher'
 
@@ -7,7 +8,9 @@ interface PartiesMainProps {}
 const PartiesMain: React.FC<PartiesMainProps> = () => {
   return (
     <>
-      {/* react helmet etc. */}
+      <Helmet>
+        <title>Parties</title>
+      </Helmet>
 
       <PartiesWithFetcher />
     </>

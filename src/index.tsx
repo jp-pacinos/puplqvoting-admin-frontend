@@ -4,15 +4,20 @@ import App from './app/App'
 import store from './app/store'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>
+    <HelmetProvider>
+      <Helmet defaultTitle="Voting System - PUPLCSC" titleTemplate="%s | Voting System - PUPLCSC" />
+
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
