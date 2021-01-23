@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
 
-import Account from './Account'
+import { PagePreloader } from 'common/components'
+
+const Account = lazy(() => import('./Account'))
 
 interface Props {}
 
@@ -12,7 +14,9 @@ const AcountMain: React.FC<Props> = () => {
         <title>Account</title>
       </Helmet>
 
-      <Account />
+      <Suspense fallback={<PagePreloader />}>
+        <Account />
+      </Suspense>
     </>
   )
 }

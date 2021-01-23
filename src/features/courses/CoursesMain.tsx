@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
 
-import CoursesWithFetcher from './CoursesWithFetcher'
+import { PagePreloader } from 'common/components'
+
+const CoursesWithFetcher = lazy(() => import('./CoursesWithFetcher'))
 
 interface Props {}
 
@@ -12,7 +14,9 @@ const CoursesMain: React.FC<Props> = () => {
         <title>Courses</title>
       </Helmet>
 
-      <CoursesWithFetcher />
+      <Suspense fallback={<PagePreloader />}>
+        <CoursesWithFetcher />
+      </Suspense>
     </>
   )
 }

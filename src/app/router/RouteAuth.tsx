@@ -1,12 +1,10 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 // layouts
 import { Main as MainLayout } from 'app/layouts'
 
 // pages
-import { LoginPage } from 'features/login'
 import {
   ElectionsPage,
   ElectionPage,
@@ -19,30 +17,10 @@ import { CoursesPage } from 'features/courses'
 import { AccountPage } from 'features/account'
 import { NotFoundPage } from 'features/404'
 
+// others
 import { Snackbar } from 'features/snackbar'
-import { selectIsAuth } from 'features/app/appSlice'
-import useFetchInitialData from './hooks/useFetchInitialData'
-import useResponseInterceptor from './hooks/useResponseInterceptor'
-
-const Router: React.FC<{}> = () => {
-  const isAuth = useSelector(selectIsAuth)
-  return <>{isAuth ? <RouteAuth /> : <RouteGuest />}</>
-}
-
-export default Router
-
-//
-
-const RouteGuest: React.FC = () => {
-  return (
-    <>
-      <Switch>
-        <Route path="/login" component={LoginPage} exact />
-        <Redirect to="/login" from="*" />
-      </Switch>
-    </>
-  )
-}
+import useFetchInitialData from 'app/hooks/useFetchInitialData'
+import useResponseInterceptor from 'app/hooks/useResponseInterceptor'
 
 const RouteAuth: React.FC = () => {
   useResponseInterceptor()
@@ -79,3 +57,5 @@ const RouteAuth: React.FC = () => {
     </MainLayout>
   )
 }
+
+export default RouteAuth

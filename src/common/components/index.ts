@@ -11,3 +11,5 @@ export { default as Snackbar } from './Snackbar'
 export { default as SnackbarPortal } from './SnackbarPortal'
 export { default as Pagination } from './Pagination'
 export { default as Paragraph } from './Paragraph'
+
+export { default as PagePreloader } from './PagePreloader'
