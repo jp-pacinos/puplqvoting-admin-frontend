@@ -1,0 +1,5 @@
+.vscode
+debug.log
+node_modules
+build
+src/app/App.css
