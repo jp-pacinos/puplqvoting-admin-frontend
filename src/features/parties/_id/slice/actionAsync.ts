@@ -136,9 +136,15 @@ export const newOfficialPicture = createAsyncThunk(
 
       return response.data
     } catch (e) {
+      let message = 'Please check your uploaded picture.'
+
+      if (e.response && e.response.status === 403) {
+        message = e.response.data.message
+      }
+
       dispatch(
         snackbarOpen({
-          text: 'Please check your uploaded picture.',
+          text: message,
           position: { x: 'middle', y: 'bottom' },
           duration: Duration.short,
         })

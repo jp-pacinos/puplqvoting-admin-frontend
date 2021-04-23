@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { snackbarOpen, snackbarClose } from 'features/snackbar'
+import { snackbarOpen } from 'features/snackbar'
 import {
   ApiFunction,
   getCourses,
@@ -62,7 +62,7 @@ export const updateCourseAsync = createAsyncThunk(
       let response = await updateCourseApi(params)
       return response.data
     } catch (e) {
-      if (e.response) {
+      if (e.response && e.response.status === 422) {
         // @ts-ignore-start
         let firstMessage: any = Object.entries(e.response.data.errors)[0][1][0]
         // @ts-ignore-end

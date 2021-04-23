@@ -64,7 +64,7 @@ export const createStudent = createAsyncThunk(
 
       return response.data
     } catch (e) {
-      if (e.response) {
+      if (e.response && e.response.status === 422) {
         return rejectWithValue(e.response.data) // laravel validation
       }
 
@@ -95,7 +95,7 @@ export const updateStudent = createAsyncThunk(
 
       return response.data
     } catch (e) {
-      if (e.response) {
+      if (e.response && e.response.status === 422) {
         return rejectWithValue(e.response.data) // laravel validation
       }
 

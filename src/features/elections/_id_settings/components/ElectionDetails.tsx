@@ -89,7 +89,7 @@ const ElectionDetails: React.FC<Props> = () => {
 
       setStatus('success')
     } catch (e) {
-      if (e.response) {
+      if (e.response && e.response.status === 422) {
         setValidation(e.response.data)
         setStatus('validating')
         return

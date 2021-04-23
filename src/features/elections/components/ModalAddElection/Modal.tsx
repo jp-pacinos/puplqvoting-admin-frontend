@@ -67,7 +67,7 @@ const ModalAddElection: React.FC<Props> = ({
       setOpenModal(false)
       setStatus(RequestStatus.success)
     } catch (e) {
-      if (e.response) {
+      if (e.response && e.response.status === 422) {
         setValidation(e.response.data as ApiValidationResponse.addElection)
         setStatus(RequestStatus.validating)
         return
