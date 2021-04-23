@@ -13,6 +13,12 @@ const LoginMain: React.FC<Props> = () => {
       </Helmet>
 
       <Login />
+
+      <div className="text-center text-gray-700 mb-40">
+        <h4 className="text-sm mb-3">Tip: Admin account</h4>
+        <p>Username: admin@admin.com</p>
+        <p>Password: 1234567890</p>
+      </div>
     </>
   )
 }
