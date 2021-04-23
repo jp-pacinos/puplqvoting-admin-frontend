@@ -11,9 +11,15 @@ type RenderContentParams = {
 interface Props {
   renderContent: (params: RenderContentParams) => React.ReactNode
   childrenProps?: React.ComponentPropsWithoutRef<'div'>
+  className?: string
 }
 
-const Dropdown: React.FC<Props> = ({ renderContent, children, childrenProps = {} }) => {
+const Dropdown: React.FC<Props> = ({
+  renderContent,
+  children,
+  childrenProps = {},
+  className = '',
+}) => {
   const [active, setActive] = useState(false)
 
   return (
@@ -22,7 +28,7 @@ const Dropdown: React.FC<Props> = ({ renderContent, children, childrenProps = {}
 
       <FadeGrow
         in={active}
-        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
+        className={`origin-top-right absolute right-0 mt-2 rounded-md shadow-lg w-44 ${className}`}
       >
         <div
           className="py-1 rounded-md bg-white shadow-xs"
@@ -32,7 +38,9 @@ const Dropdown: React.FC<Props> = ({ renderContent, children, childrenProps = {}
           {...childrenProps}
         >
           {React.Children.map(children, (child: any) => {
-            return <div onClick={() => setActive(false)}>{child}</div>
+            return (
+              <div onClick={() => setActive(Boolean(child.props['data-exclude']))}>{child}</div>
+            )
           })}
         </div>
       </FadeGrow>

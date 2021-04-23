@@ -9,6 +9,7 @@ import {
   ButtonMenu,
   DropdownProfile,
   MobileMenu,
+  ButtonRestoreApp,
 } from './components'
 
 interface Props {}
@@ -46,6 +47,7 @@ const Header: React.FC<Props> = () => {
 
         <RightMenuContainer>
           <DropdownProfile />
+          <ButtonRestoreApp />
         </RightMenuContainer>
       </HeaderBody>
 
