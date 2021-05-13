@@ -13,7 +13,7 @@ ReactDOM.render(
       <Helmet defaultTitle="Voting System - PUPLCSC" titleTemplate="%s | Voting System - PUPLCSC" />
 
       <Provider store={store}>
-        <Router>
+        <Router basename="/admin">
           <App />
         </Router>
       </Provider>

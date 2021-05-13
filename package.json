@@ -1,6 +1,7 @@
 {
   "name": "puplcsc-voting-frontend-admin",
   "version": "0.1.0",
+  "homepage": "/admin",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
